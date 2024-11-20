@@ -1,0 +1,9 @@
+{% extends "template.html" %}
+{% block content %}
+<h2>Select a Version:</h2>
+<ul>
+    {% for id, name, versions in versions %}
+        <li><a href="/bible/{{id}}">{{name}}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

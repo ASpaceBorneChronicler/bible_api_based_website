@@ -1,0 +1,21 @@
+{% extends "template.html" %}
+{% block styles %}
+<style>
+    h2, a{
+        text-decoration: none;
+        color: #2c3e50;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<h2 >
+    <a href="{{url_for('choose_version')}}">{{version_name}} </a>
+</h2>
+<ul>
+    {% for id, name in books %}
+    <li><a href="{{url_for('choose_chapter', version=version, book=id)}}">{{name}}</a></li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}

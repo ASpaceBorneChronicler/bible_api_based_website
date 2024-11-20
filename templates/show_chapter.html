@@ -1,0 +1,71 @@
+{% extends "template.html" %}
+{% block styles %}
+<style>
+    .mt2 {
+        font-size: 24px; /* Larger text size for emphasis */
+        font-family: 'Georgia', serif; /* Elegant serif font for titles */
+        font-weight: bold; /* Bold for distinction */
+        color: #2c3e50; /* Dark blue-gray color */
+        text-align: center; /* Center-align text */
+        margin-top: 20px; /* Top margin for spacing */
+    }
+    
+    .mt1 {
+        font-size: 36px; /* Even larger size for the book title */
+        font-family: 'Times New Roman', serif; /* Serif font for classic styling */
+        font-weight: normal; /* Regular weight for contrast */
+        color: #34495e; /* Slightly darker color for hierarchy */
+        text-align: center; /* Center-align text */
+        margin-top: 10px; /* Smaller top margin */
+        margin-bottom: 20px; /* Add spacing below */
+    }
+    
+    /* Add some global styles for body or parent container */
+    body {
+        background-color: #f8f9fa; /* Light gray background for readability */
+        font-family: Arial, sans-serif; /* Fallback font for consistency */
+        margin: 0;
+        padding: 0;
+    }
+    
+    .container {
+        max-width: 600px; /* Constrain content width for better readability */
+        margin: 50px auto; /* Center the container with margin */
+        padding: 20px; /* Add some padding */
+        background-color: #ffffff; /* White background for contrast */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        border-radius: 8px; /* Rounded corners */
+    }
+    a{
+        text-decoration: none;
+        color: #2c3e50;
+    }
+    
+</style>
+{% endblock %}
+{% block content %}
+
+
+<h2 style="text-align:center;">
+    <a href="{{url_for('choose_chapter', version=version, book=book)}}">{{book_name}} </a>
+</h2>
+<div class="container">
+{{chapter | safe }}
+</div>
+<div class="nav-buttons">
+    <!-- Previous Button -->
+    {% if previous %}
+        <a href="{{ url_for('get_chapter', version=version, chapter_id=previous) }}" style="margin-left: 10px;" class="btn">Previous</a>
+    {% else %}
+        <button class="btn disabled" disabled>Previous</button>
+    {% endif %}
+    
+    <!-- Next Button -->
+    {% if next %}
+        <a href="{{ url_for('get_chapter', version=version, chapter_id=next) }}" style="margin-right: 10px;" class="btn">Next</a>
+    {% else %}
+        <button class="btn disabled" disabled>Next</button>
+    {% endif %}
+</div>
+
+{% endblock %}
